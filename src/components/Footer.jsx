@@ -29,9 +29,7 @@ const Footer = () => {
                         <Link to ='https://in.linkedin.com/company/nano-semic' >
                         <FaLinkedinIn size={30} className='hover:text-blue-500'/>
                         </Link>
-                        <Link to ='https://twitter.com/'>
-                        <FaXTwitter size={(30)} className='hover:text-blue-500'/>
-                        </Link>
+                       
 
                          </div>
             </div>
@@ -47,10 +45,10 @@ const Footer = () => {
             <a href ="/services" className='transition-colors duration-300  hover:text-blue-400'>Services</a>
 
             <p to className="text-base font-bold tracking-wide text-white">Products</p>
-            <a href ="/pro/6834390cdfd9c1857bb48718"className='transition-colors duration-300  hover:text-blue-400'>ArsenSafe Arsenic Sensor</a>
-            <a href="/pro/6834390cdfd9c1857bb4871d" className='transition-colors duration-300  hover:text-blue-400'>Glass Substrate for Sensor</a>
-            <a href="/pro/6834390cdfd9c1857bb4871f" className='transition-colors duration-300  hover:text-blue-400'>PET Substrate for Sensor</a>
-            <a href="/pro" className='transition-colors underline duration-300  hover:text-blue-400'>See More</a>
+            <a href ="/product/684b17e9d5b2ef323890c06d"className='transition-colors duration-300  hover:text-blue-400'>ArsenSafe Arsenic Sensor</a>
+            <a href="/product/684b17e9d5b2ef323890c072" className='transition-colors duration-300  hover:text-blue-400'>IDE Glass Substrate for Sensor</a>
+            <a href="/product/684b17e9d5b2ef323890c075" className='transition-colors duration-300  hover:text-blue-400'>IDE PET Substrate for Sensor</a>
+            <a href="/product" className='transition-colors underline duration-300  hover:text-blue-400'>See More</a>
         </div>
         <div className="flex flex-col gap-2 text-sm">
             <p className="text-base font-bold tracking-wide text-white">Services</p>

@@ -6,12 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useLoad } from "../context/loading";
 import { clearUser } from "../redux/user/userSlice"; // Adjust the import path as needed
-
+import { useSelector } from "react-redux";
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const { loading, setLoading } = useLoad();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.user);
   useEffect(() => {
     fetchCart();
   }, []);
@@ -30,7 +31,7 @@ const Cart = () => {
 
       const cart = response.data;
       console.log("Fetched cart:", cart);
-      if (cart && Array.isArray(cart.products)) {
+      if (user && cart && Array.isArray(cart.products)) {
         setCartItems(cart.products);
       } else {
         setCartItems([]);

@@ -44,31 +44,20 @@ function Navbar() {
     return () => unsubscribe();
   }, []);
 
-  const handleLogout = async () => {
+const handleLogout = async () => {
     try {
-      if (firebaseUser) {
-        await signOut(auth);
-        setFirebaseUser(null);
-      }
-
-      if (mongoUser) {
-        await axios.post(
-          `${import.meta.env.VITE_API_BASE_URL}/admin/logout`,
-          {},
-          { withCredentials: true }
-        );
-        setMongoUser(null);
-      }
-
-      localStorage.removeItem("token");
+      await axios.post( `${import.meta.env.VITE_API_BASE_URL}/admin/logout`, {},{
+        withCredentials: true,
+      });
       dispatch(clearUser());
-      navigate("/");
+      localStorage.removeItem("selectedAddress");
+      navigate('/');
       toast.success("Successfully logged out!");
     } catch (error) {
       console.error("Logout error:", error);
       toast.error("Failed to log out. Please try again.");
-    }
-  };
+}
+};
 
   return (
     <>
@@ -122,7 +111,7 @@ function Navbar() {
                   <span className="absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 group-hover:opacity-100 transition" />
                   <span className="absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-sm opacity-0 group-hover:opacity-100 transition" />
                 </button>
-               
+
               </>
             )}
           </div>
@@ -140,29 +129,30 @@ function Navbar() {
             <AiOutlineClose size={25} className="text-white cursor-pointer" onClick={handleNav} />
           </div>
           <ul className="flex flex-col gap-4 px-4 mt-8">
-            <li><NavLink to="/" onClick={handleNav}>Home</NavLink></li>
+             <li><NavLink to="/account" onClick={handleNav}>Account</NavLink></li>
+              <li><NavLink to="/cart" onClick={handleNav}>Cart</NavLink></li>
             <li><NavLink to="/about" onClick={handleNav}>About</NavLink></li>
             <li><NavLink to="/product" onClick={handleNav}>Product</NavLink></li>
             <li><NavLink to="/services" onClick={handleNav}>Services</NavLink></li>
             <li><NavLink to="/contact" onClick={handleNav}>Contact</NavLink></li>
             {!user && (
-              
-                <button
-                  onClick={() => {
-                    setIsLoginOpen(true);
-                    handleNav();
-                  }}
-                  className="bg-white text-black rounded-full py-2 px-4 mt-4 font-semibold"
-                >
-                  Login
-                </button>
-                
+
+              <button
+                onClick={() => {
+                  setIsLoginOpen(true);
+                  handleNav();
+                }}
+                className="bg-white text-black rounded-full py-2 px-4 mt-4 font-semibold"
+              >
+                Login
+              </button>
+
             )}
 
             {user && (
-              <button onClick={() => { handleLogout(); handleNav(); }} className="bg-white text-black rounded-full py-2 px-4 mt-4 font-semibold">Logout</button>
+              <button onClick={() => { handleLogout(); setDropdownOpen(false); }} className="bg-white text-black rounded-full py-2 px-4 mt-4 font-semibold">Logout</button>
             )}
-            
+
 
           </ul>
         </div>

@@ -100,14 +100,10 @@ const Contact = () => {
               Contact Us
             </h1>
             <p className="text-gray-600 mb-8">
-              Feel free to use the form, drop us an email or call us.
+              Feel free to use the form, drop us an email.
             </p>
 
             <div className="space-y-6 text-gray-700">
-              <div className="flex items-center gap-4">
-                <FaPhoneAlt className="text-orange-500" />
-                <span>+91-1002002999</span>
-              </div>
               <div className="flex items-center gap-4">
                 <FaEnvelope className="text-orange-500" />
                 <span>nanosemic.official@gmail.com</span>

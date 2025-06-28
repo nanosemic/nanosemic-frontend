@@ -31,7 +31,9 @@ const SummaryPage = () => {
           }
         );
         console.log(userAddresses.data);
-        setAddress(userAddresses.data.addresses[0]);
+        const add = JSON.parse(localStorage.getItem("selectedAddress"));
+        setAddress(add);
+
         // console.log(address)
       } catch (err) {
         console.error("Error in checkout data loading:", err);
@@ -41,11 +43,11 @@ const SummaryPage = () => {
     fetchData(); // call the async function
   }, []);
   const subtotal = cartItems.reduce((acc, item) => {
-  const price = item.product.price || 0;
-  const discount = item.product.discount || 0;
-  const discountedPrice = price * (1 - discount / 100);
-  return acc + discountedPrice * item.quantity;
-}, 0);
+    const price = item.product.price || 0;
+    const discount = item.product.discount || 0;
+    const discountedPrice = price * (1 - discount / 100);
+    return acc + discountedPrice * item.quantity;
+  }, 0);
   const deliveryCharge = subtotal > 500 ? 0 : 50;
   const totalPayable = subtotal + deliveryCharge;
 
@@ -53,24 +55,25 @@ const SummaryPage = () => {
 
     try {
       const res = await axios.post(
-      `${import.meta.env.VITE_API_BASE_URL}/orders/place`,
-      {
-        paymentMethod: "Cash on Delivery",
-      },
-      { withCredentials: true }
-    );
+        `${import.meta.env.VITE_API_BASE_URL}/orders/place`,
+        {
+          paymentMethod: "Cash on Delivery",
+        },
+        { withCredentials: true }
+      );
 
-    if (res.status === 200 || res.status === 201) {
-      navigate("/order-success");
-    } else {
-      alert("Order failed. Please try again.");
-    }
+      if (res.status === 200 || res.status === 201) {
+        navigate("/order-success");
+        setCartItems([]); // Clear cart items after successful order
+      } else {
+        alert("Order failed. Please try again.");
+      }
     } catch (error) {
       console.error("Order error:", error);
-    // const message = error.response?.data?.message || "Something went wrong.";
+      // const message = error.response?.data?.message || "Something went wrong.";
     }
 
-    
+
 
   };
 

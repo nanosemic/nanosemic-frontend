@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import akashay from "../assets/aka.png";
+import akashay from "../assets/akshay.jpg";
 import sir2 from "../assets/sir.jpg";
 import miss from "../assets/miss.jpg";
 import meg from "../assets/meg.jpg";
@@ -44,10 +44,10 @@ const GradientImage = ({ src, alt }) => (
 );
 
 const About = () => {
-  const {loading, setLoading} = useLoad();
+  const { loading, setLoading } = useLoad();
   useEffect(() => {
     setLoading(true);
-  } , []);
+  }, []);
 
   return (
     <div className=" relative  text-white font-sans">
@@ -93,7 +93,7 @@ const About = () => {
           <div>
             <h2 className="text-4xl font-bold mb-6">Our Company</h2>
             <p className="text-lg text-gray-300">
-             Nano Semic Pvt. Ltd. was founded in 2024 and is presently incubated with IIT Bhubaneswar Research and Entrepreneurship Park. We are a semiconductor products and services company. We offer a range of solutions starting from consumer sensors, sensor components, workforce training programs for industries, universities and schools and semiconductor technology development consultancy services.
+              Nano Semic Pvt. Ltd. was founded in 2024 and is presently incubated with IIT Bhubaneswar Research and Entrepreneurship Park. We are a semiconductor products and services company. We offer a range of solutions starting from consumer sensors, sensor components, workforce training programs for industries, universities and schools and semiconductor technology development consultancy services.
             </p>
             {/* <ul className="list-disc pl-5 mt-4 space-y-2 text-lg text-gray-300">
               <li>Gas and water sensing in industries and homes.</li>
@@ -152,65 +152,56 @@ const About = () => {
 
       {/* Core Team Section */}
       <Section>
-        <div className="text-center py-20">
-          <h2 className="text-4xl font-bold mb-6 text-white">
+        <div className="text-center py-16 px-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-white">
             Meet the Core Team
           </h2>
-        </div>
-
-        <div className="max-w-6xl mx-auto px-6 pb-20 flex justify-center lg:gap-24  gap-16">
-          {[
-            {
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-10">
+            {[{
               name: "Dr. Sayan Dey",
               title: "Director/ Co-Founder",
               linkedin: "https://www.linkedin.com/in/sayandey?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
               image: sir2,
               bio: "Dr. Sayan received his B.Tech degree in ECE from WBUT, M.Tech from Jadavpur University and Ph.D. from IIT Kharagpur in 2020. Thereafter, he worked as a Fulbright-Nehru Fellow in Columbia University, USA till 2022. He received National Awards for best dissertations twice in 2015 and 2020 and the prestigious Fulbright Fellowship in 2021. He is currently an Assistant Professor in the Department of Electronics and Communication Engineering, School of Electrical and Computer Sciences at IIT Bhubaneswar and also one of the Directors of Nano Semic Pvt. Ltd.",
-            },
-            {
+            }, {
               name: "Dr. Akshay K",
               title: "Director/ Co-Founder",
               linkedin: "https://www.linkedin.com/in/akshay-k-ak-8129066062/?originalSubdomain=in",
               image: akashay,
-              bio: "Dr. Akshay received the B.Tech. degree in ECE from NIT Calicut and MS and PhD degrees from IIT Madras as a Prime Minister's Research Fellow in 2022. He worked as a Senior Semiconductor Device Engineer in the Technology Development Group at Micron Technology till 2023. He is currently an Assistant Professor in the Department of Electronics and Communication Engineering, School of Electrical and Computer Sciences at IIT Bhubaneswar and also one of the Directors of Nano Semic Pvt. Ltd. ",
-            },
-          ].map((member, i) => (
-            <Section direction={i % 2 === 0 ? "up" : "down"} key={member.name}>
-              <div className="bg-black/60 text-white lg:w-[400px]  rounded-xl overflow-hidden backdrop-blur-md border border-white/10 shadow-xl transform transition-transform duration-500  hover:scale-105 hover:border-white/30 hover:shadow-[0_0_20px_#ffffff22] ">
-                <div className="w-full h-64 overflow-hidden">
+              bio: "Dr. Akshay received the B.Tech. degree in ECE from NIT Calicut and MS and PhD degrees from IIT Madras as a Prime Minister's Research Fellow in 2022. He worked as a Senior Semiconductor Device Engineer in the Technology Development Group at Micron Technology till 2023. He is currently an Assistant Professor in the Department of Electronics and Communication Engineering, School of Electrical and Computer Sciences at IIT Bhubaneswar and also one of the Directors of Nano Semic Pvt. Ltd.",
+            }].map((member, i) => (
+              <div
+                key={member.name}
+                className="w-full sm:max-w-md bg-black/60 text-white rounded-xl overflow-hidden backdrop-blur-md border border-white/10 shadow-xl transform transition-transform duration-500 hover:scale-105 hover:border-white/30 hover:shadow-[0_0_20px_#ffffff22]"
+              >
+                <div className="w-full h-64 sm:h-72 overflow-hidden">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-contain "
+                    className="w-full h-full object-contain"
                   />
                 </div>
-
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold">{member.name}</h3>
-                  <p className="text-md text-gray-300">{member.title}</p>
-                  <p className="text-sm text-gray-400 mt-2">{member.bio}</p>
-                  <div className="flex gap-4 mt-4">
+                <div className="p-5 text-center">
+                  <h3 className="text-lg font-semibold">{member.name}</h3>
+                  <p className="text-sm text-gray-300">{member.title}</p>
+                  <p className="text-sm text-gray-400 mt-2 text-justify">{member.bio}</p>
+                  <div className="flex justify-center gap-4 mt-4">
                     <a
                       href={member.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-blue-400 transition-colors"  > 
-                    <FaLinkedinIn
-                      size={20}
                       className="hover:text-blue-400 transition-colors"
-                    />  
-                    </a>  
-                    {/* <FaXTwitter
-                      size={20}
-                      className="hover:text-white transition-colors"
-                    /> */}
+                    >
+                      <FaLinkedinIn size={20} />
+                    </a>
                   </div>
                 </div>
               </div>
-            </Section>
-          ))}
+            ))}
+          </div>
         </div>
       </Section>
+
     </div>
   );
 };

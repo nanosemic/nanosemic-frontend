@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 const OrderSuccess = () => {
   const navigate = useNavigate();
-
   useEffect(() => {
     // Redirect after 5 seconds
     const timeout = setTimeout(() => {
@@ -21,12 +20,13 @@ const OrderSuccess = () => {
         className="w-full max-w-md rounded-lg shadow-lg"
         onEnded={() => navigate('/my-orders')}
       >
-        <source src="../public/Payment Success-vmake.mp4" type="video/mp4" />
+        <source src="/paysuccess.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <h2 className="text-xl text-center font-semibold text-green-600 mt-4">
-        Your order has been placed successfully!
+      <h2 className="text-xl text-center font-semibold text-red-600 mt-4 animate-pulse shadow-red-500 shadow-md">
+        This is a demo order only!
       </h2>
+
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 const AddressUpdate = () => {
   const [addresses, setAddresses] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -15,7 +15,7 @@ const AddressUpdate = () => {
 
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
-
+  const { user } = useSelector((state) => state.user);
   // Fetch addresses on mount
   useEffect(() => {
     const fetchAddresses = async () => {
@@ -24,7 +24,7 @@ const AddressUpdate = () => {
         const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/my/address`, {
           withCredentials:true,
         });
-        setAddresses(res.data.addresses || []);
+       if(user) setAddresses(res.data.addresses || []);
       } catch (err) {
         console.error('Failed to fetch addresses:', err);
       }
@@ -73,7 +73,8 @@ const handleSubmit = async (e) => {
     // Save the newly added address to localStorage
     const newAddress = res.data.addresses[res.data.addresses.length - 1]; // Get the last added address
     
-
+    localStorage.setItem('selectedAddress', JSON.stringify(newAddress));
+    // Update the addresses state
     setMessage('New address added and selected!');
     setTimeout(() => navigate('/summary'), 1000);
   } catch (err) {
